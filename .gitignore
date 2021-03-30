@@ -1,0 +1,10 @@
+web_interface/node_modules/**
+web_interface/node_modules
+web_interface/node_modules/
+venv/
+utils/venv/
+*.pyc
+web_interface/.env.local
+/bazel-**
+bazel-**
+.DS_Store
