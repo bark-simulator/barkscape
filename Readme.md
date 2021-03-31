@@ -2,6 +2,7 @@
 
 A web-visualization for BARK built using [streetscape](https://github.com/uber/streetscape.gl) and [xviz](https://github.com/uber/xviz).
 
+
 <p align="center">
 <img src="utils/barkscape.png" alt="BARKSCAPE" />
 </p>
@@ -9,23 +10,26 @@ A web-visualization for BARK built using [streetscape](https://github.com/uber/s
 
 ## Install, Build and Run Web-Interface
 
-`cd web_interface`
+To install all required packages and run the webserver, run the command:
+`bazel run //web_interface:server`
 
-`yarn`
-
-`yarn start-live-local`
 
 ## Install Python Environment
 
-`bash utils/install.sh`
+Before executing any BARK specific code, make sure to install the virtual environment and enter it.
 
-`source utils/dev_into.sh`
+To install the virtual environment run: `bash utils/install.sh`
+
+To activate the virtual environment run: `source utils/dev_into.sh`
+
 
 ## Run BARK
 
+Once the webserver is started, the BARK example can be visualized using:
 `bazel run //tests:bark_runtime_tests`
 
 
 ## Run BARK-ML
 
+Similarily, for BARK-ML use:
 `bazel run //tests:bark_ml_runner_tests`
