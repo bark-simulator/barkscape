@@ -13,14 +13,14 @@ py_library(
   deps = []
 )
 
-py_library(
+py_binary(
   name = "bark_runtime_handler",
   srcs = ["bark_runtime_handler.py"],
   data = ["@bark_project//bark/python_wrapper:core.so"],
   deps = ["//server:bark_viewer"]
 )
 
-py_library(
+py_binary(
   name = "bark_ml_runtime_handler",
   srcs = ["bark_ml_runtime_handler.py"],
   data = ["@bark_project//bark/python_wrapper:core.so",
@@ -34,7 +34,7 @@ py_library(
   ]
 )
 
-py_library(
+py_binary(
   name = "bark_ml_runner_handler",
   srcs = ["bark_ml_runner_handler.py"],
   data = ["@bark_project//bark/python_wrapper:core.so",
@@ -44,6 +44,6 @@ py_library(
              "../bark_ml_project/bark_ml/"],
   deps = [
     "//server:bark_viewer",
-    "@bark_ml_project//bark_ml/environments:gym",
+    "@bark_ml_project//bark_ml/environments:gym"
   ]
 )

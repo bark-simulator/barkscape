@@ -42,12 +42,7 @@ setXVIZConfig(XVIZ_CONFIG);
 
 const TIMEFORMAT_SCALE = getXVIZConfig().TIMESTAMP_FORMAT === 'seconds' ? 1000 : 1;
 
-// __IS_STREAMING__ and __IS_LIVE__ are defined in webpack.config.js
-const exampleLog = require(__IS_STREAMING__
-  ? './log-from-stream'
-  : __IS_LIVE__
-    ? './log-from-live'
-    : './log-from-file').default;
+const exampleLog = require('./log-from-live').default;
 
 class Example extends PureComponent {
   state = {
@@ -79,7 +74,7 @@ class Example extends PureComponent {
           <XVIZPanel log={log} name="Camera" />
           <hr /> */}
           <div id="header">
-            <img src="../assets/bark_logo_head.png" alt="Behavior Benchmark" />
+            <img src="web_interface/assets/bark_logo_head.png" alt="Behavior Benchmark" />
             <p>
               BARK
             </p>
