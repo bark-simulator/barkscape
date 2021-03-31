@@ -74,7 +74,7 @@ class Example extends PureComponent {
           <XVIZPanel log={log} name="Camera" />
           <hr /> */}
           <div id="header">
-            <img src="../assets/bark_logo_head.png" alt="Behavior Benchmark" />
+            <img src="web_interface/assets/bark_logo_head.png" alt="Behavior Benchmark" />
             <p>
               BARK
             </p>

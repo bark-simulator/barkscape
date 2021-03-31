@@ -1,16 +1,6 @@
-load("@npm//@bazel/typescript:index.bzl", "ts_project")
+package(default_visibility = ["//visibility:public"])
 load("@npm//http-server:index.bzl", "http_server")
 load("@npm//webpack-cli:index.bzl", webpack = "webpack_cli")
-
-
-ts_project(
-    # Experimental: Start a tsc daemon to watch for changes to make recompiles faster.
-    supports_workers = True,
-    deps = [
-        "@npm//@types",
-        "@npm//csstype",
-    ],
-)
 
 webpack(
     name = "bundle",
@@ -40,6 +30,7 @@ http_server(
     data = [
         "app.bundle.js",
         "index.html",
+        "assets/bark_logo_head.png",
     ],
-    templated_args = ["."],
+    templated_args = ["./web_interface"],
 )
