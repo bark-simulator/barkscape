@@ -102,7 +102,7 @@ class BarkViewer:
     ego_state = primitives[-1].object
     builder.pose()\
       .timestamp(timestamp)\
-      .orientation(0, 0, ego_state[3])\
+      .orientation(0, 0, 0)\
       .map_origin(11.58, 48.13, 0.)\
       .position(ego_state[1], ego_state[2], 0)
     builder.time_series('/ego_vehicle/velocity')\
