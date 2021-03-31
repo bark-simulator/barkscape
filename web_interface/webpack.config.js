@@ -29,13 +29,10 @@ const BABEL_CONFIG = {
 
 const CONFIG = {
   mode: 'development',
-  entry: {
-    app: resolve('./src/app.js')
-  },
   devtool: 'source-map',
   output: {
-    path: resolve('./dist'),
-    filename: 'bundle.js'
+    path: resolve('./'),
+    filename: "app.bundle.js",
   },
   module: {
     noParse: /(mapbox-gl)\.js$/,
@@ -57,17 +54,5 @@ const CONFIG = {
 
 module.exports = (env = {}) => {
   let config = Object.assign({}, CONFIG);
-
-  // This switch between streaming and static file loading
-  config.plugins = config.plugins.concat([
-    new webpack.DefinePlugin({__IS_STREAMING__: JSON.stringify(Boolean(env.stream))}),
-    new webpack.DefinePlugin({__IS_LIVE__: JSON.stringify(Boolean(env.live))})
-  ]);
-
-  // if (env.local) {
-  //   // This line enables bundling against src in this repo rather than installed module
-  //   config = require('../webpack.config.local')(config)(env);
-  // }
-
   return config;
 };

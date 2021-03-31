@@ -17,6 +17,11 @@
     "streetscape.gl": "^1.0.0"
   },
   "devDependencies": {
+    "@bazel/buildifier": "^4.0.1",
+    "@bazel/ibazel": "^0.15.6",
+    "@bazel/typescript": "^3.2.3",
+    "http-server": "^0.11.1",
+    "typescript": "^3.6.3",
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
