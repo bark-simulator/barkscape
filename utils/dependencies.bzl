@@ -12,11 +12,12 @@ def dependencies():
     branch = "renderer",
     remote = "https://github.com/bark-simulator/bark",
   )
-  _maybe(
-    native.local_repository,
-    name = "bark_project",
-    path = "/Users/hart/Development/bark"
-  )
+
+  # _maybe(
+  #   native.local_repository,
+  #   name = "bark_project",
+  #   path = "/Users/hart/Development/bark"
+  # )
 
   _maybe(
     git_repository,
