@@ -67,6 +67,7 @@ class BarkViewer:
         'data': self._metadata.to_object()
     }
 
+  # TODO: add 3d lines
   async def get_message(self, t, runtime):
     world = runtime._world
     timestamp = world.time
@@ -129,7 +130,7 @@ class BarkViewer:
           np_poly_pts_list
       ).classes(['Unknown'])\
         .style({
-          "height": 2,
+          "height": primitive.conf["height"],
           "stroke_color": primitive.conf["stroke_color"],
           "fill_color": primitive.conf["fill_color"]})
 

@@ -94,6 +94,8 @@ if __name__ == "__main__":
                   maintain_world_history=True)
 
     # run-stuff
+    
+    # TODO: this should also be encapsulated
     logger = logging.getLogger()
     scen_handler = BarkRuntimeHandler(runtime=env, logger=logger)
     server = XVIZServer(scen_handler, port=8081)
