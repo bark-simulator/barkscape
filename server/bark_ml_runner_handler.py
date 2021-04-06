@@ -19,7 +19,54 @@ from xviz_avs.server import XVIZServer, XVIZBaseSession
 from tf_agents.trajectories import time_step as ts
 
 from server.bark_viewer import BarkViewer
+from bark.core.world.renderer import *
+from bark.core.geometry import *
+from matplotlib.colors import LinearSegmentedColormap
+import matplotlib.pyplot as plt
 
+def dist_reward(goal_center_line, x, y, d_max=5, exp=0.4):
+  return 1. - (Distance(goal_center_line, Point2d(x, y))/d_max)**exp
+
+def dist_other(world, ego_id, x, y, d_max=20, exp=0.2):
+  d = 0.
+  for id, agent in world.agents.items():
+    state = agent.history[-1][0]
+    dist = Distance(Point2d(state[1], state[2]), Point2d(x, y))
+    if ego_id != id and dist < d_max:
+      d += (dist/d_max)**exp - 1.
+  return d
+
+def DrawPhiDistDist(env, a=0.4):
+  bark_world = env._world
+  bb = bark_world.bounding_box
+  ego_id = env._scenario._eval_agent_ids[0]
+  ego_agent = env._world.agents[ego_id]
+  goal_center_line = ego_agent.goal_definition.center_line
+  x_range = np.arange(bb[0].x(), bb[1].x(), 1.5)
+  y_range = np.arange(bb[0].y(), bb[1].y(), 1.5)
+  X, Y = np.meshgrid(x_range, y_range)
+  zs = np.array([dist_reward(goal_center_line, x, y, exp=a) + dist_other(bark_world, ego_id, x, y) for x,y in zip(np.ravel(X), np.ravel(Y))])
+  total_reward = zs.reshape(X.shape)
+  # cmap = LinearSegmentedColormap.from_list('mycmap', [(12/255, 44/255, 132/255, 1), (199/255, 233/255, 180/255, 1)])
+  
+  for xx, yy, zz in zip(X, Y, total_reward):
+    for x, y, z in zip(xx, yy, zz):
+      poly = Polygon2d([0, 0, 0], [
+        Point2d(-0.5, -0.5),
+        Point2d(-0.5, 0.5),
+        Point2d(0.5, 0.5),
+        Point2d(0.5, -0.5)])
+      poly = poly.Translate(Point2d(x, y))
+      norm = plt.Normalize(-1, 1)
+      color = [int(255*x) for x in plt.cm.jet(norm(z))]
+      # set alpha
+      color[-1] = 64
+      color = tuple(color)
+      poly_primitive = RenderPrimitive(poly)
+      poly_primitive.Add("height", 2.5*z)
+      poly_primitive.Add("stroke_color", (128, 128, 128, 128))
+      poly_primitive.Add("fill_color", color)
+      bark_world.renderer.Add("POLYGONS", poly_primitive)
 
 class BarkMLRunnerSession(XVIZBaseSession):
   def __init__(self, socket, request, runner=None, dt=0.2, logger=None):
@@ -48,6 +95,7 @@ class BarkMLRunnerSession(XVIZBaseSession):
       env_data = self._runner._environment.step(action)
       # self._runner._tracer.Trace(env_data, **kwargs)
       state, reward, is_terminal, info = env_data
+      
       # visualize graph
       try:
         graph_tuples = self._runner._agent._agent._actor_network._latent_trace
@@ -59,6 +107,10 @@ class BarkMLRunnerSession(XVIZBaseSession):
           render)
       except:
         pass
+      
+      # TODO: visualize rewards
+      DrawPhiDistDist(self._runner._environment)
+      
       if render:
         self._runner._environment.render()
       message = await self._bark_viewer.get_message(t, self._runner._environment)
