@@ -59,8 +59,8 @@ py_test(
 )
 
 py_test(
-  name = "custom_runner",
-  srcs = ["custom_runner.py"],
+  name = "custom_runner_example",
+  srcs = ["custom_runner_example.py"],
   data = ['@bark_project//bark:generate_core',
           '@bark_project//bark/runtime/tests:xodr_data',
           "//examples:xodr_data"],
@@ -78,8 +78,8 @@ py_test(
 )
 
 py_test(
-  name = "custom_stream",
-  srcs = ["custom_stream.py"],
+  name = "custom_stream_example",
+  srcs = ["custom_stream_example.py"],
   data = ['@bark_project//bark:generate_core',
           '@bark_project//bark/runtime/tests:xodr_data',
           "//examples:xodr_data"],
