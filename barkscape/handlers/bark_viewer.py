@@ -17,7 +17,7 @@ from bark.core.world.opendrive import *
 
 class BarkViewer:
   def __init__(self, live=True, logger=None):
-      self._metadata = None
+    self._metadata = None
 
   def get_metadata(self):
     if not self._metadata:

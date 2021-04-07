@@ -8,13 +8,10 @@
 
 import sys, os, logging
 import asyncio, json
-
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
 import xviz_avs
 from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
 from xviz_avs.server import XVIZServer, XVIZBaseSession
-
 from barkscape.handlers.bark_viewer import BarkViewer
 
 
