@@ -2,6 +2,12 @@ package(default_visibility = ["//visibility:public"])
 load("@npm//http-server:index.bzl", "http_server")
 load("@npm//webpack-cli:index.bzl", webpack = "webpack_cli")
 
+filegroup(
+   name="web_srcs",
+   srcs=glob(["src/**", "index.html"]),
+   visibility = ["//visibility:public"],
+)
+
 webpack(
     name = "bundle",
     outs = ["app.bundle.js"],
