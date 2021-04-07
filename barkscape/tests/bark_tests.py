@@ -5,16 +5,10 @@
 #
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
-
-import numpy as np
-import time
 import sys, os, logging
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import asyncio, json
 from bark.runtime.commons.parameters import ParameterServer
-from bark.runtime.viewer.matplotlib_viewer import MPViewer
 from bark.runtime.viewer.buffered_viewer import BufferedViewer
-from bark.runtime.viewer.video_renderer import VideoRenderer
 from bark.runtime.scenario.scenario_generation.config_with_ease import \
   LaneCorridorConfig, ConfigWithEase
 from bark.runtime.runtime import Runtime
@@ -24,15 +18,9 @@ from bark.core.world.goal_definition import *
 from bark.core.models.behavior import *
 from bark.core.commons import SetVerboseLevel
 
-# visual
-import xviz_avs
-from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
-from xviz_avs.server import XVIZServer, XVIZBaseSession
-
 # BARKSCAPE
 from barkscape.handlers.base_server import BaseServer
-from barkscape.handlers.base_handler import BaseHandler
-from barkscape.handlers.bark_runtime_handler import ScenarioSession
+from barkscape.handlers.bark_runtime_handler import BARKRunner
 
 # scenario
 class CustomLaneCorridorConfig(LaneCorridorConfig):
@@ -96,13 +84,8 @@ if __name__ == "__main__":
                   render=True,
                   maintain_world_history=True)
 
-    # run-stuff
-    
-    # TODO: this should also be encapsulated
+    # run BARKSCAPE
     logger = logging.getLogger()
-    # here we can set dt as well
-    scen_handler = BaseHandler(runner=ScenarioSession, runnable_object=env, logger=logger)
-    server = XVIZServer(scen_handler, port=8081)
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(server.serve())
-    loop.run_forever()
+    bark_server = BaseServer(
+      runner=BARKRunner, runnable_object=env, logger=logger)
+    bark_server.Start()

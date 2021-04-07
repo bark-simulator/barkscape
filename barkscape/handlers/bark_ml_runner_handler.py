@@ -16,7 +16,7 @@ from barkscape.handlers.base_runner import BaseRunner
 from tf_agents.trajectories import time_step as ts
 
 
-class ScenarioSession(BaseRunner):
+class BARKMLRunnerRunner(BaseRunner):
   def __init__(
     self, socket, request, runnable_object=None,
     dt=0.2, logger=None, stream=None):

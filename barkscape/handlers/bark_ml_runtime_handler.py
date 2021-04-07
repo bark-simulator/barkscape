@@ -15,7 +15,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from barkscape.handlers.base_runner import BaseRunner
 
 
-class ScenarioSession(BaseRunner):
+class BARKMLRuntimeRunner(BaseRunner):
   def __init__(
     self, socket, request, runnable_object=None,
     dt=0.2, logger=None, stream=None):
