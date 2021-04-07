@@ -18,10 +18,14 @@ from bark_ml.library_wrappers.lib_tf_agents.runners import SACRunner
 import bark_ml.environments.gym
 
 # visual
-from barkscape.handlers.bark_ml_runner_handler import BarkMLRunnerHandler
 import xviz_avs
 from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
 from xviz_avs.server import XVIZServer, XVIZBaseSession
+
+# BARKSCAPE
+from barkscape.handlers.base_server import BaseServer
+from barkscape.handlers.base_handler import BaseHandler
+from barkscape.handlers.bark_ml_runner_handler import ScenarioSession
 
 
 def load_exp_runner(file_name):
@@ -51,7 +55,7 @@ if __name__ == "__main__":
       
   # run-stuff
   logger = logging.getLogger()
-  scen_handler = BarkMLRunnerHandler(runner=runner, logger=logger)
+  scen_handler = BaseHandler(runner=ScenarioSession, runnable_object=runner, logger=logger)
   server = XVIZServer(scen_handler, port=8081)
   loop = asyncio.get_event_loop()
   loop.run_until_complete(server.serve())

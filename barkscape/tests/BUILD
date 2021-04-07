@@ -46,6 +46,8 @@ py_binary(
     "@bark_ml_project//experiments:experiment_runner",
     "@bark_project//bark/runtime/viewer:buffered_viewer",
     "//barkscape/handlers:bark_ml_runner_handler",
-    "//barkscape/handlers:bark_xviz_stream"
+    "//barkscape/handlers:bark_xviz_stream",
+    "//barkscape/handlers:base_server",
+    "//barkscape/handlers:base_handler"
   ]
 )

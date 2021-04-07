@@ -100,6 +100,7 @@ if __name__ == "__main__":
     
     # TODO: this should also be encapsulated
     logger = logging.getLogger()
+    # here we can set dt as well
     scen_handler = BaseHandler(runner=ScenarioSession, runnable_object=env, logger=logger)
     server = XVIZServer(scen_handler, port=8081)
     loop = asyncio.get_event_loop()
