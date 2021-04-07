@@ -1,5 +1,7 @@
 # BARKSCAPE
 
+![Ubtuntu-CI Build](https://github.com/bark-simulator/barkscape/workflows/CI/badge.svg)
+
 A web-visualization for BARK built using [streetscape](https://github.com/uber/streetscape.gl) and [xviz](https://github.com/uber/xviz).
 
 
