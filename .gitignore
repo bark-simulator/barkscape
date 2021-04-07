@@ -8,3 +8,4 @@ barkscape/web/.env.local
 /bazel-**
 bazel-**
 .DS_Store
+__pycache__
