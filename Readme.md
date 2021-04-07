@@ -22,4 +22,4 @@ After the JS-bundle has been built, the website should now be accessible at http
 
 First install the virtual environment run using `bash utils/install.sh` and enter it using `source utils/dev_into.sh`.
 
-To run and visualize BARK in the web-interface (started with `bazel run //barkscape/web:run`) run, e.g., `bazel run //examples:bark_example`.
+To run and visualize BARK in the web-interface (started with `bazel run //barkscape/web:run`) run, e.g., `bazel run //examples:bark_example`. Note: Both commands need to be run at the same time.
