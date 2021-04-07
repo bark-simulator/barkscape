@@ -12,7 +12,7 @@ import numpy as np
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 # BARKSCAPE
-from barkscape.handlers.base_runner import BaseRunner
+from barkscape.server.base_runner import BaseRunner
 
 
 class BARKMLRuntimeRunner(BaseRunner):

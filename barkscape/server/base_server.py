@@ -3,7 +3,7 @@ import asyncio, json
 from xviz_avs.server import XVIZServer
 
 # BARKSCAPE
-from barkscape.handlers.base_handler import BaseHandler
+from barkscape.server.base_handler import BaseHandler
 
 """BaseServer
    handler: XVIZ handler

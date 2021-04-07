@@ -12,9 +12,10 @@ from experiments.experiment_runner import ExperimentRunner
 from bark_ml.library_wrappers.lib_tf_agents.runners import SACRunner
 
 # BARKSCAPE
-from barkscape.handlers.base_server import BaseServer
-from barkscape.handlers.base_handler import BaseHandler
-from barkscape.handlers.bark_ml_runner_handler import BARKMLRunnerRunner
+from barkscape.server.base_server import BaseServer
+from barkscape.server.base_handler import BaseHandler
+from barkscape.server.runners.bark_ml_runner_runner import BARKMLRunnerRunner
+
 
 def load_exp_runner(file_name):
   return ExperimentRunner(
@@ -24,6 +25,7 @@ def load_exp_runner(file_name):
 
 
 if __name__ == "__main__":
+  # load experiment
   exp_runner_gnn = load_exp_runner(
     "/Users/hart/Development/bark-ml/experiments/configs/phd/01_hyperparams/gnns/merging_large_embedding.json")
   runtime = exp_runner_gnn._experiment._runtime

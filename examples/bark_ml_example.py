@@ -12,11 +12,12 @@ from bark.runtime.viewer.buffered_viewer import BufferedViewer
 import bark_ml.environments.gym
 
 # BARKSCAPE
-from barkscape.handlers.base_server import BaseServer
-from barkscape.handlers.base_handler import BaseHandler
-from barkscape.handlers.bark_ml_runtime_handler import BARKMLRuntimeRunner
+from barkscape.server.base_server import BaseServer
+from barkscape.server.base_handler import BaseHandler
+from barkscape.server.runners.bark_ml_runtime_runner import BARKMLRuntimeRunner
 
 if __name__ == "__main__":
+  # OpenAI-Gym BARK-ML environment
   env = gym.make("merging-medium-v0")
   # set buffered viewer
   viewer = BufferedViewer()

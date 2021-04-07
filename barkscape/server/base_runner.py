@@ -12,7 +12,7 @@ import xviz_avs
 from xviz_avs.server import XVIZBaseSession
 
 # BARKSCAPE
-from barkscape.handlers.bark_xviz_stream import BarkXvizStream
+from barkscape.server.bark_xviz_stream import BarkXvizStream
 
 
 """BaseRunner
