@@ -7,8 +7,8 @@ filegroup(
 )
 
 py_library(
-  name = "bark_viewer",
-  srcs = ["bark_viewer.py"],
+  name = "bark_xviz_stream",
+  srcs = ["bark_xviz_stream.py"],
   data = ["@bark_project//bark:generate_core"],
   deps = []
 )
@@ -17,7 +17,7 @@ py_binary(
   name = "bark_runtime_handler",
   srcs = ["bark_runtime_handler.py"],
   data = ["@bark_project//bark/python_wrapper:core.so"],
-  deps = ["//barkscape/handlers:bark_viewer"]
+  deps = ["//barkscape/handlers:bark_xviz_stream"]
 )
 
 py_binary(
@@ -29,7 +29,7 @@ py_binary(
              "../bark_project/bark_ml/python_wrapper/",
              "../bark_ml_project/bark_ml/"],
   deps = [
-    "//barkscape/handlers:bark_viewer",
+    "//barkscape/handlers:bark_xviz_stream",
     "@bark_ml_project//bark_ml/environments:gym",
   ]
 )
@@ -43,7 +43,7 @@ py_binary(
              "../bark_project/bark_ml/python_wrapper/",
              "../bark_ml_project/bark_ml/"],
   deps = [
-    "//barkscape/handlers:bark_viewer",
+    "//barkscape/handlers:bark_xviz_stream",
     "@bark_ml_project//bark_ml/environments:gym"
   ]
 )

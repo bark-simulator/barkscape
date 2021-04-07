@@ -10,7 +10,7 @@ import sys, os, logging
 import asyncio, json
 import xviz_avs
 from xviz_avs.server import XVIZBaseSession
-from barkscape.handlers.bark_viewer import BarkViewer
+from barkscape.handlers.bark_xviz_stream import BarkXvizStream
 
 
 """BaseRunner
@@ -21,7 +21,7 @@ class BaseRunner(XVIZBaseSession):
     self, socket, request, runtime=None, dt=0.2, logger=None, viewer=None):
     super().__init__(socket, request)
     self._runtime = runtime
-    self._bark_viewer = viewer or BarkViewer()
+    self._bark_xviz_stream = viewer or BarkXvizStream()
     self._socket = socket
     self._dt = dt
     self._logger = logger
@@ -36,8 +36,8 @@ class BaseRunner(XVIZBaseSession):
   """
   async def main(self):
     t = 0
-    metadata = self._bark_viewer.get_metadata()
+    metadata = self._bark_xviz_stream.get_metadata()
     await self._socket.send(json.dumps(metadata))
-    message = await self._bark_viewer.get_message(t, self._runtime)
+    message = await self._bark_xviz_stream.get_message(t, self._runtime)
     await self._socket.send(json.dumps(message))
     await asyncio.sleep(self._dt)

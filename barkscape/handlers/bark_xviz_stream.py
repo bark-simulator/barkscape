@@ -15,7 +15,7 @@ import xviz_avs.builder as xbuilder
 from bark.core.world.opendrive import *
 
 
-class BarkViewer:
+class BarkXvizStream:
   def __init__(self, live=True, logger=None):
     self._metadata = None
 

@@ -18,7 +18,7 @@ from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
 from xviz_avs.server import XVIZServer, XVIZBaseSession
 from tf_agents.trajectories import time_step as ts
 
-from barkscape.handlers.bark_viewer import BarkViewer
+from barkscape.handlers.bark_xviz_stream import BarkXvizStream
 from bark.core.world.renderer import *
 from bark.core.geometry import *
 from matplotlib.colors import LinearSegmentedColormap
@@ -75,7 +75,7 @@ class BarkMLRunnerSession(XVIZBaseSession):
   def __init__(self, socket, request, runner=None, dt=0.2, logger=None):
     super().__init__(socket, request)
     self._runner = runner
-    self._bark_viewer = BarkViewer()
+    self._bark_xviz_stream = BarkXvizStream()
     self._socket = socket
     self._dt = dt
     self._logger = logger
@@ -116,7 +116,7 @@ class BarkMLRunnerSession(XVIZBaseSession):
       
       if render:
         self._runner._environment.render()
-      message = await self._bark_viewer.get_message(t, self._runner._environment)
+      message = await self._bark_xviz_stream.get_message(t, self._runner._environment)
       await self._socket.send(json.dumps(message))
       end_time = time.time()
       self._runner._environment._world.renderer.Clear()
@@ -126,7 +126,7 @@ class BarkMLRunnerSession(XVIZBaseSession):
 
         
   async def main(self):
-    metadata = self._bark_viewer.get_metadata()
+    metadata = self._bark_xviz_stream.get_metadata()
     await self._socket.send(json.dumps(metadata))
     for i in range(0, 20):
       await self.RunEpisode()
