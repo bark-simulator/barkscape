@@ -9,26 +9,19 @@
 import sys, os, logging
 import asyncio, json
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import xviz_avs
-from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
-from xviz_avs.server import XVIZServer, XVIZBaseSession
+
+# BARKSCAPE
 from barkscape.handlers.bark_xviz_stream import BarkXvizStream
+from barkscape.handlers.base_runner import BaseRunner
 
 
-class ScenarioSession(XVIZBaseSession):
-  def __init__(self, socket, request, runtime=None, dt=0.2, logger=None):
-    super().__init__(socket, request)
-    self._runtime = runtime
-    self._bark_xviz_stream = BarkXvizStream()
-    self._socket = socket
-    self._dt = dt
-    self._logger = logger
-
-  def on_connect(self):
-    print("Connected!")
-
-  def on_disconnect(self):
-    print("Disconnect!")
+class ScenarioSession(BaseRunner):
+  def __init__(
+    self, socket, request, runnable_object=None,
+    dt=0.2, logger=None, stream=None):
+    super().__init__(
+      socket, request, runnable_object=runnable_object,
+      dt=dt, logger=logger, stream=None)
   
   async def main(self):
     metadata = self._bark_xviz_stream.get_metadata()
@@ -36,21 +29,12 @@ class ScenarioSession(XVIZBaseSession):
     # TODO: this needs to be a self-contained run-time
     for eps in range(0, 20):
       t = 0
-      self._runtime.reset()
+      self._runnable_object.reset()
       for i in range(0, 35):
-        self._runtime.step()
-        message = await self._bark_xviz_stream.get_message(t, self._runtime)
+        self._runnable_object.step()
+        message = await self._bark_xviz_stream.get_message(t, self._runnable_object)
         await self._socket.send(json.dumps(message))
-        self._runtime._world.renderer.Clear()
+        self._runnable_object._world.renderer.Clear()
         t += self._dt
         await asyncio.sleep(self._dt)
-                
-                
-class BarkRuntimeHandler:
-  def __init__(self, runtime=None, logger=None):
-    self._runtime = runtime
-    self._logger = logger
 
-  def __call__(self, socket, request):
-    return ScenarioSession(
-      socket, request, runtime=self._runtime, logger=self._logger)

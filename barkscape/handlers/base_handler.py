@@ -13,14 +13,15 @@
    should do".
 """
 class BaseHandler:
-  def __init__(self, runnable_object=None, logger=None, runner=None, viewer=None):
+  def __init__(
+    self, runnable_object=None, logger=None,
+    runner=None, stream=None):
     self._runnable_object = runnable_object
     self._logger = logger
     self._runner = runner
-    self._viewer = viewer
+    self._stream = stream
 
   def __call__(self, socket, request):
-    # TODO: need to infuse socket and request here
-    # TODO: might need to use eval
     return self._runner(
-      socket, request, runnable_object=self._runnable_object, logger=self._logger, viewer=None)
+      socket, request, runnable_object=self._runnable_object,
+      logger=self._logger, stream=self._stream)

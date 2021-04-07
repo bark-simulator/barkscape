@@ -12,7 +12,9 @@ py_test(
           "@bark_project//bark/runtime/scenario/scenario_generation:scenario_generation",
           "@bark_project//bark/runtime:runtime",
           "//barkscape/handlers:bark_runtime_handler",
-          "//barkscape/handlers:bark_xviz_stream"],
+          "//barkscape/handlers:bark_xviz_stream",
+          "//barkscape/handlers:base_server",
+          "//barkscape/handlers:base_handler"],
 )
 
 py_test(

@@ -1,6 +1,9 @@
 import sys, os, logging
+import asyncio, json
 from xviz_avs.server import XVIZServer
 
+# BARKSCAPE
+from barkscape.handlers.base_handler import BaseHandler
 
 """BaseServer
    handler: XVIZ handler
@@ -10,7 +13,7 @@ from xviz_avs.server import XVIZServer
    logger: for log outputs
    stream: streams XVIZ of BARK
 """
-class BaseSever:
+class BaseServer:
   def __init__(self,
     handler=None,
     runner=None,
@@ -18,10 +21,10 @@ class BaseSever:
     logger=None,
     port=8081,
     stream=None):
-  self._handler = handler or BaseHandler(
-    runnable_object, logger, runner, stream)
-  self._port = port
-  
+    self._handler = handler or BaseHandler(
+      runnable_object, logger, runner, stream)
+    self._port = port
+    
   def Start(self):
     server = XVIZServer(self._handler, port=self._port)
     loop = asyncio.get_event_loop()
