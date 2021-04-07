@@ -18,12 +18,13 @@ from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
 from xviz_avs.server import XVIZServer, XVIZBaseSession
 from tf_agents.trajectories import time_step as ts
 
-from server.bark_viewer import BarkViewer
+from barkscape.handlers.bark_viewer import BarkViewer
 from bark.core.world.renderer import *
 from bark.core.geometry import *
 from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.pyplot as plt
 
+### DO REMOVE
 def dist_reward(goal_center_line, x, y, d_max=5, exp=0.4):
   return 1. - (Distance(goal_center_line, Point2d(x, y))/d_max)**exp
 
@@ -67,6 +68,8 @@ def DrawPhiDistDist(env, a=0.4):
       poly_primitive.Add("stroke_color", (128, 128, 128, 128))
       poly_primitive.Add("fill_color", color)
       bark_world.renderer.Add("POLYGONS", poly_primitive)
+### DO REMOVE
+
 
 class BarkMLRunnerSession(XVIZBaseSession):
   def __init__(self, socket, request, runner=None, dt=0.2, logger=None):

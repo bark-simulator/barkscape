@@ -16,7 +16,7 @@ from bark.runtime.viewer.buffered_viewer import BufferedViewer
 import bark_ml.environments.gym
 
 # visual
-from server.bark_ml_runtime_handler import BarkMLRuntimeHandler
+from barkscape.handlers.bark_ml_runtime_handler import BarkMLRuntimeHandler
 import xviz_avs
 from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
 from xviz_avs.server import XVIZServer, XVIZBaseSession

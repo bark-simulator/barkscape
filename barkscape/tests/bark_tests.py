@@ -25,7 +25,7 @@ from bark.core.models.behavior import *
 from bark.core.commons import SetVerboseLevel
 
 # visual
-from server.bark_runtime_handler import BarkRuntimeHandler
+from barkscape.handlers.bark_runtime_handler import BarkRuntimeHandler
 import xviz_avs
 from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
 from xviz_avs.server import XVIZServer, XVIZBaseSession
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
     scenarios = \
       ConfigWithEase(num_scenarios=3,
-                    map_file_name="server/data/DR_DEU_Merging_MT_v01_shifted.xodr",
+                    map_file_name="barkscape/handlers/data/DR_DEU_Merging_MT_v01_shifted.xodr",
                     random_seed=0,
                     params=param_server,
                     lane_corridor_configs=[left_lane, right_lane])

@@ -18,7 +18,7 @@ from bark_ml.library_wrappers.lib_tf_agents.runners import SACRunner
 import bark_ml.environments.gym
 
 # visual
-from server.bark_ml_runner_handler import BarkMLRunnerHandler
+from barkscape.handlers.bark_ml_runner_handler import BarkMLRunnerHandler
 import xviz_avs
 from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
 from xviz_avs.server import XVIZServer, XVIZBaseSession

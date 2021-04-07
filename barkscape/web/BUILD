@@ -6,9 +6,9 @@ webpack(
     name = "bundle",
     outs = ["app.bundle.js"],
     args = [
-        "web_interface/src/app.js",
+        "barkscape/web/src/app.js",
         "--config",
-        "web_interface/webpack.config.js",
+        "barkscape/web/webpack.config.js",
         "-o",
         "$@",
     ],
@@ -26,11 +26,11 @@ webpack(
 
 # Note, on Windows you need `--enable_runfiles`
 http_server(
-    name = "server",
+    name = "run",
     data = [
         "app.bundle.js",
         "index.html",
         "assets/bark_logo_head.png",
     ],
-    templated_args = ["./web_interface"],
+    templated_args = ["./barkscape/web"],
 )

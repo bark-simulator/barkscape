@@ -17,7 +17,7 @@ py_binary(
   name = "bark_runtime_handler",
   srcs = ["bark_runtime_handler.py"],
   data = ["@bark_project//bark/python_wrapper:core.so"],
-  deps = ["//server:bark_viewer"]
+  deps = ["//barkscape/handlers:bark_viewer"]
 )
 
 py_binary(
@@ -29,7 +29,7 @@ py_binary(
              "../bark_project/bark_ml/python_wrapper/",
              "../bark_ml_project/bark_ml/"],
   deps = [
-    "//server:bark_viewer",
+    "//barkscape/handlers:bark_viewer",
     "@bark_ml_project//bark_ml/environments:gym",
   ]
 )
@@ -43,7 +43,7 @@ py_binary(
              "../bark_project/bark_ml/python_wrapper/",
              "../bark_ml_project/bark_ml/"],
   deps = [
-    "//server:bark_viewer",
+    "//barkscape/handlers:bark_viewer",
     "@bark_ml_project//bark_ml/environments:gym"
   ]
 )
