@@ -16,10 +16,14 @@ from bark.runtime.viewer.buffered_viewer import BufferedViewer
 import bark_ml.environments.gym
 
 # visual
-from barkscape.handlers.bark_ml_runtime_handler import BarkMLRuntimeHandler
 import xviz_avs
 from xviz_avs.builder import XVIZBuilder, XVIZMetadataBuilder
 from xviz_avs.server import XVIZServer, XVIZBaseSession
+
+# BARKSCAPE
+from barkscape.handlers.base_server import BaseServer
+from barkscape.handlers.base_handler import BaseHandler
+from barkscape.handlers.bark_ml_runtime_handler import ScenarioSession
 
 if __name__ == "__main__":
   handler = logging.StreamHandler(sys.stdout)
@@ -34,7 +38,7 @@ if __name__ == "__main__":
 
   # run-stuff
   logger = logging.getLogger()
-  scen_handler = BarkMLRuntimeHandler(runtime=env, logger=logger)
+  scen_handler = BaseHandler(runner=ScenarioSession, runnable_object=env, logger=logger)
   server = XVIZServer(scen_handler, port=8081)
   loop = asyncio.get_event_loop()
   loop.run_until_complete(server.serve())

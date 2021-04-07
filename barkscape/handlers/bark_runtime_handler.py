@@ -11,7 +11,6 @@ import asyncio, json
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 # BARKSCAPE
-from barkscape.handlers.bark_xviz_stream import BarkXvizStream
 from barkscape.handlers.base_runner import BaseRunner
 
 
@@ -21,7 +20,7 @@ class ScenarioSession(BaseRunner):
     dt=0.2, logger=None, stream=None):
     super().__init__(
       socket, request, runnable_object=runnable_object,
-      dt=dt, logger=logger, stream=None)
+      dt=dt, logger=logger, stream=stream)
   
   async def main(self):
     metadata = self._bark_xviz_stream.get_metadata()
