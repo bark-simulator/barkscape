@@ -24,4 +24,4 @@ First install the virtual environment run using `bash utils/install.sh` and ente
 
 Start the web-interface via `bazel run //barkscape/web:run`
 
-Run a simulation in BARK, e.g. `bazel run //bark/examples:barkscape_example`. If you only experience a blank screen in the web interface, reload it via Ctrl+R or F5.
+Run a simulation in BARK, e.g. `bazel run //bark/examples:barkscape_example` or test one of the examples in the barkscape repository, e.g. `bazel run //examples:bark_ml_example`. If you only experience a blank screen in the web interface, reload it via Ctrl+R or F5.
