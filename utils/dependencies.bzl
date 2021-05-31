@@ -40,18 +40,16 @@ cc_library(
     name = "python-lib",
     srcs = glob(["lib/libpython3.*", "libs/python3.lib", "libs/python36.lib"]),
     hdrs = glob(["include/**/*.h", "include/*.h"]),
-    includes = ["include/python3.6m", "include", "include/python3.7m", "include/python3.5m"], 
+    includes = ["include/python3.6m", "include", "include/python3.7m", "include/python3.5m"],
     visibility = ["//visibility:public"],
 )
     """)
 
-  # if we include glog twice, gflags are defined mult. times
   _maybe(
-    new_git_repository,
-    name = "com_github_google_glog",
-    commit = "195d416e3b1c8dc06980439f6acd3ebd40b6b820",
-    remote = "https://github.com/google/glog",
-    build_file="//:utils/glog.BUILD"
+  git_repository,
+  name = "com_github_glog_glog",
+  commit = "c5dcae830670bfaea9573fa7b700e862833d14ff",
+  remote = "https://github.com/google/glog.git"
   )
 
   _maybe(
