@@ -46,13 +46,6 @@ cc_library(
     """)
 
   _maybe(
-  git_repository,
-  name = "com_github_glog_glog",
-  commit = "c5dcae830670bfaea9573fa7b700e862833d14ff",
-  remote = "https://github.com/google/glog.git"
-  )
-
-  _maybe(
     http_archive,
     name = "build_bazel_rules_nodejs",
     sha256 = "dd7ea7efda7655c218ca707f55c3e1b9c68055a70c31a98f264b3445bc8f4cb1",
